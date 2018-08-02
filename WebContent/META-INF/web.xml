@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>clog</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+  <listener>
+    <listener-class>
+        com.sft.clog.control.InitServlet
+    </listener-class>
+  </listener>
+  <context-param>
+    <param-name>Company</param-name>
+    <param-value>hajj_i_way</param-value>
+  </context-param>
+  <context-param>
+    <param-name>Product</param-name>
+    <param-value>hajj_i_way</param-value>
+  </context-param>
+  <context-param>
+    <param-name>driver</param-name>
+    <param-value>com.mysql.jdbc.Driver</param-value>
+  </context-param>
+  <context-param>
+    <param-name>url</param-name>
+    <param-value>jdbc:mysql://localhost:3306/hajjRoadDB</param-value>
+  </context-param>
+  <context-param>
+    <param-name>username</param-name>
+    <param-value>root</param-value>
+  </context-param>
+  <context-param>
+    <param-name>password</param-name>
+    <param-value>4gtss_98178</param-value>
+  </context-param>
+  
+  <context-param>
+    <param-name>connectionType</param-name>
+    <param-value>mysql</param-value>
+  </context-param>
+  
+  <context-param>
+     <param-name>log4jConfiguration</param-name>
+     <param-value>/opt/clog_log4j/log4j2.xml</param-value>
+  </context-param>
+    
+  <listener>
+     <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
+  </listener>
+     
+  <filter>
+    <filter-name>log4jServletFilter</filter-name>
+    <filter-class>org.apache.logging.log4j.web.Log4jServletFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+     <filter-name>log4jServletFilter</filter-name>
+     <url-pattern>/*</url-pattern>
+     <dispatcher>REQUEST</dispatcher>
+     <dispatcher>FORWARD</dispatcher>
+     <dispatcher>INCLUDE</dispatcher>
+     <dispatcher>ERROR</dispatcher>
+     <dispatcher>ASYNC</dispatcher>
+  </filter-mapping>
+</web-app>
